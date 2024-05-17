@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/api';
 import { useAuth } from '../hooks/useAuth';
+import logo from "../../assets/B2Bit Logo.png";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +24,7 @@ const Login: React.FC = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <img src={logo} alt="" />
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email</label>
