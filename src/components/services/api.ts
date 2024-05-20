@@ -8,14 +8,17 @@ const api = axios.create({
   },
 });
 
+const token = localStorage.getItem("@token");
+const convertedToken = token ? JSON.parse(token) : null;
+console.log(convertedToken);
 export const login = async (email: string, password: string) => {
   return api.post('auth/login/', { email, password });
 };
 
-export const getProfile = async (token: string) => {
+export const getProfile = async () => {
   return api.get('auth/profile/', {
     headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${convertedToken}`,
     }
 });
 };

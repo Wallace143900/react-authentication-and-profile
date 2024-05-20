@@ -8,14 +8,16 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const { setToken } = useAuth();
+  // const { setToken } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await login(email, password);
-      setToken(response.data.access_token);
+      const {data} = await login(email, password);
+      // setToken(response.data.access_token);
+      localStorage.setItem("@token", JSON.stringify(data.tokens.access));
+      console.log(data.tokens.access);
       navigate('/home');
     } catch (error) {
       setError('Invalid credentials');
